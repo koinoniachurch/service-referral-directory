@@ -1,8 +1,8 @@
 import express from "express";
-import type { WorshipSet } from "defs/Types";
+import type { Service } from "defs/Types";
 import type mongodb from "mongodb";
 
-export function WsetRouter(db: mongodb.Db): express.Router {
+export function ReferRouter(db: mongodb.Db): express.Router {
 	const router = express.Router({
 		caseSensitive: true,
 		strict: true,
@@ -13,7 +13,7 @@ export function WsetRouter(db: mongodb.Db): express.Router {
 	.get("/:dateCode", (req, res, next) => {
 		;
 	})
-	.post("/:dateCode", (req: express.Request<{dateCode: string}, WorshipSet>, res, next) => {
+	.post("/:dateCode", (req: express.Request<{dateCode: string}, Service>, res, next) => {
 		req.params.dateCode;
 		//db.collection<WorshipSet>("wset").updateOne({}, );
 	});

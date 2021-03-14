@@ -29,7 +29,8 @@ import expressStaticGzip from "express-static-gzip";
 import { google } from "googleapis";
 
 import { JsUtils } from "defs/JsUtils";
-import { WsetRouter } from "./wset";
+import { InfoRouter } from "./info";
+import { ReferRouter } from "./refer";
 
 (async() => {
 const db = (await mongodb.connect("")).db("kec-musicchart-test", {});
@@ -54,7 +55,7 @@ const app = express()
 		//maxAge: 31536000000, // 1 year.
 	},
 }))
-.use(WsetRouter(db));
+.use(InfoRouter(db));
 
 const _http = http.createServer({}, app);
 _http.listen(<net.ListenOptions>{ port: undefined, host: undefined }, (): void => {
