@@ -1,0 +1,13 @@
+{
+	"extends": "../tsconfig-template.json",
+	"compilerOptions": {
+		"rootDir": ".",
+		"outDir": "../dist/.ts/src",
+	},
+	"files": [],
+	"references": [
+		{ "path": "base", },
+		{ "path": "client", },
+		{ "path": "server", },
+	],
+}

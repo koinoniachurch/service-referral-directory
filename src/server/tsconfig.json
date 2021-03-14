@@ -1,0 +1,11 @@
+{
+	"extends": "../tsconfig-childbase.json",
+	"compilerOptions": {
+		"target": "es2020", // can use es2020 for node14
+		"lib": ["es2020"], // no dom
+		"types": ["my-type-utils", "node", "express"],
+	},
+	"references": [
+		{ "path": "../base" },
+	],
+}

@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "name": "kec-service-referral-directory",
+  "version": "0.1.0",
+  "description": "",
+  "author": "David Fong (https://github.com/koinoniachurch)",
+  "repository": "github:koinoniachurch/service-referral-directory",
+  "type": "module",
+  "files": [],
+  "exports": {},
+  "sideEffects": [
+    "*.css",
+    "src/base/defs/Mod*Platform.ts",
+    "test/*.ts"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "devinit": "bash scripts/devinit.sh",
+    "lint": "eslint --color --cache --cache-location './node_modules/.cache/eslint-cache.json' './src/'",
+    "build": "node --enable-source-maps --disable-proto=delete --title='capswalk-build' './scripts/webpack/pack.js'",
+    "serve": "node --enable-source-maps --disable-proto=delete --title='capswalk-server' ./dist/server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-static-gzip": "^2.1.1",
+    "googleapis": "^67.1.0",
+    "mongodb": "^3.6.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/mongodb": "^3.6.8",
+    "@types/node": "^14.14.31",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.21.0",
+    "typescript": "^4.2.2",
+    "typescript-json-schema": "^0.49.0",
+    "typescript-plugin-css-modules": "^3.2.0"
+  }
+}

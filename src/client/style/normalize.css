@@ -1,0 +1,22 @@
+/* #region vendor-normalize */
+@import "normalize.vendor";
+/* #endregion */
+
+* {
+	user-select: none; /* allows overriding */
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: monospace;
+	color: var(--c-fg);
+	background-color: var(--c-bg);
+	scroll-behavior: smooth;
+}
+
+table {
+	border-spacing: 0;
+}
