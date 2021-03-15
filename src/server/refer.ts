@@ -19,3 +19,5 @@ export function ReferRouter(db: mongodb.Db): express.Router {
 	});
 	return router;
 }
+Object.freeze(ReferRouter);
+Object.freeze(ReferRouter.prototype);

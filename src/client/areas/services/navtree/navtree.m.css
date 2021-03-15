@@ -1,0 +1,22 @@
+
+.navtree {
+	contain: content;
+	--navitem-height: 1.0em;
+	--navitem-indentation: 0.5em;
+}
+
+.item {
+	contain: content;
+	height: var(--navitem-height);
+}
+.item[data-expanded] {
+	height: fit-content;
+}
+.item > .item {
+	margin-inline-start: var(--navitem-indentation);
+}
+
+.item-heading {
+	contain: strict;
+	height: var(--navitem-height);
+}

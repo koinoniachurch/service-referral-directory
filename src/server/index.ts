@@ -29,7 +29,7 @@ import expressStaticGzip from "express-static-gzip";
 import { google } from "googleapis";
 
 import { JsUtils } from "defs/JsUtils";
-import { InfoRouter } from "./info";
+import { ServicesRouter } from "./services";
 import { ReferRouter } from "./refer";
 
 (async() => {
@@ -55,7 +55,7 @@ const app = express()
 		//maxAge: 31536000000, // 1 year.
 	},
 }))
-.use(InfoRouter(db));
+.use(ServicesRouter(db));
 
 const _http = http.createServer({}, app);
 _http.listen(<net.ListenOptions>{ port: undefined, host: undefined }, (): void => {

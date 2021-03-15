@@ -107,3 +107,23 @@ export const Tree: Category[] = [{
 		{ id: "chinese",      title: "中文班", path: "" },
 	],
 },];
+
+
+function SetPath(prefix: string, category: Category): void {
+	const pathSep = "/";
+	if (DEF.DevAssert && category.id.includes(pathSep)) {
+		throw new Error(`category id "${category.id}" is invalid`);
+	}
+	prefix += category.id + pathSep;
+	category.services.forEach((service) => {
+		if (DEF.DevAssert && service.id.includes(pathSep)) {
+			throw new Error(`service id "${category.id}" is invalid`);
+		}
+		// @ts-expect-error : RO=
+		service.path = prefix + service.id;
+	});
+	category.subcategories.forEach((subCategory) => {
+		SetPath(prefix, subCategory);
+	});
+}
+Tree.forEach((category) => SetPath("", category));
