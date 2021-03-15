@@ -114,7 +114,7 @@ export namespace JsUtils {
 		 * to prevent key collisions on null origins such as `file://`.
 		 */
 		export function _makeSmartStorage<
-			T extends {[key : string]: string | number},
+			T extends {[key : string]: object},
 		>(
 			localPrefix: string,
 			storage: Storage,

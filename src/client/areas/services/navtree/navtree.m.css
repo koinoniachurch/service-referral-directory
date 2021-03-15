@@ -1,22 +1,39 @@
 
 .navtree {
 	contain: content;
-	--navitem-height: 1.0em;
-	--navitem-indentation: 0.5em;
+	--navitem-height: auto;
+	--navitem-indentation: 1.0em;
+
+	padding: 0.5em 1.0em;
+	overflow: auto;
+	overscroll-behavior: none;
+
+	font-size: 130%;
 }
 
 .item {
 	contain: content;
-	height: var(--navitem-height);
+	cursor: pointer;
+	max-height: var(--navitem-height);
+	transition: max-height 0.50s ease-out;
+	background-color: white;
 }
 .item[data-expanded] {
-	height: fit-content;
+	max-height: fit-content;
 }
 .item > .item {
 	margin-inline-start: var(--navitem-indentation);
 }
 
 .item-heading {
-	contain: strict;
+	contain: content;
 	height: var(--navitem-height);
+}
+
+.item, .item-heading {
+	padding: 0.18em 0;
+}
+
+.item:hover, .item-heading:hover {
+	filter: brightness(95%);
 }

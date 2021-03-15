@@ -1,13 +1,14 @@
 import { JsUtils } from "defs/JsUtils";
 import { Services } from "client/areas/services/services";
 import { Refer } from "client/areas/refer/refer";
+import style from "./layout.m.css";
 
 /** */
 export class Layout {
 
-	public readonly base = JsUtils.html("div");
-	private readonly areaNav = JsUtils.html("div");
-	private readonly mainWrap = JsUtils.html("div");
+	public readonly base = JsUtils.html("div", [style.layout]);
+	private readonly areaNav = JsUtils.html("div", [style["area-nav"]]);
+	private readonly mainWrap = JsUtils.html("div", [style["main"]]);
 
 	private readonly areas = Object.freeze({
 		services: new Services(),
@@ -21,12 +22,14 @@ export class Layout {
 		this.base.appendChild(this.mainWrap);
 
 		const tab = (tabHandleText: string, baseElement: HTMLElement): void => {
-			const tabHandle = JsUtils.html("span", [], { textContent: tabHandleText });
-			this.areaNav.appendChild(tabHandle);
+			const handle = JsUtils.html("span", [style["tab-handle"]]);
+			handle.setAttribute("role", "presentation");
+			handle.appendChild(JsUtils.html("div", [], { textContent: tabHandleText }));
+			this.areaNav.appendChild(handle);
 			this.mainWrap.appendChild(baseElement);
 		}
 		tab("Services", this.areas.services.base);
-		tab("Refer", this.areas.refer.base);
+		tab("Make Referral", this.areas.refer.base);
 	}
 }
 Object.freeze(Layout);

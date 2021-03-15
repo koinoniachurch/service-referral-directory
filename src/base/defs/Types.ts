@@ -9,6 +9,7 @@ export enum Language {
 /** */
 export interface Category {
 	readonly id: string;
+	readonly path: string;
 	readonly title: string;
 	readonly subcategories: ReadonlyArray<Category>;
 	readonly services: ReadonlyArray<Service>;

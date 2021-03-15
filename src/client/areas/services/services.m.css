@@ -1,0 +1,7 @@
+
+.services {
+	contain: content;
+	display: grid;
+	grid-template:
+	"navtree main" auto / 15.0em auto;
+}

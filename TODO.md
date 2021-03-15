@@ -10,3 +10,4 @@
 
 - Polish Styling
 - Add ReCaptcha
+- Accessibility

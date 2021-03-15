@@ -1,7 +1,7 @@
 import type { Category } from "./Types";
 
 export const Tree: Category[] = [{
-	id: "housing",
+	id: "housing", path: "",
 	title: "房屋",
 	subcategories: [],
 	services: [
@@ -13,7 +13,7 @@ export const Tree: Category[] = [{
 		{ id: "property-management",  title: "物業管理", path: "" },
 	],
 },{
-	id: "finance",
+	id: "finance", path: "",
 	title: "財務",
 	subcategories: [],
 	services: [
@@ -22,7 +22,7 @@ export const Tree: Category[] = [{
 		{ id: "accountants-and-taxation", title: "會計/稅務", path: "" },
 	],
 },{
-	id: "law",
+	id: "law", path: "",
 	title: "移民 / 法律",
 	subcategories: [],
 	services: [
@@ -30,7 +30,7 @@ export const Tree: Category[] = [{
 		{ id: "lawyer-and-notary-public", title: "律師 / 公証人", path: "" },
 	],
 },{
-	id: "transportation",
+	id: "transportation", path: "",
 	title: "交通",
 	subcategories: [],
 	services: [
@@ -40,7 +40,7 @@ export const Tree: Category[] = [{
 		{ id: "car-insurance",      title: "汽車保險", path: "" },
 	],
 },{
-	id: "insurance",
+	id: "insurance", path: "",
 	title: "保險",
 	subcategories: [],
 	services: [
@@ -48,7 +48,7 @@ export const Tree: Category[] = [{
 		{ id: "health-insurance", title: "健康保險", path: "" },
 	],
 },{
-	id: "home",
+	id: "home", path: "",
 	title: "家居",
 	subcategories: [],
 	services: [
@@ -60,7 +60,7 @@ export const Tree: Category[] = [{
 		{ id: "housekeeping",       title: "家居清潔", path: "" },
 	],
 },{
-	id: "medical",
+	id: "medical", path: "",
 	title: "醫療",
 	subcategories: [],
 	services: [
@@ -78,7 +78,7 @@ export const Tree: Category[] = [{
 		{ id: "massage-therapist",   title: "按摩師", path: "" },
 	],
 },{
-	id: "family",
+	id: "family", path: "",
 	title: "家庭生活",
 	subcategories: [],
 	services: [
@@ -87,7 +87,7 @@ export const Tree: Category[] = [{
 		{ id: "babysitting",    title: "托兒服務", path: "" },
 	],
 },{
-	id: "education",
+	id: "education", path: "",
 	title: "學習",
 	subcategories: [],
 	services: [
@@ -95,7 +95,7 @@ export const Tree: Category[] = [{
 		{ id: "academic-tutor", title: "學科補習", path: "" },
 	],
 },{
-	id: "hobby",
+	id: "hobby", path: "",
 	title: "興趣",
 	subcategories: [],
 	services: [
@@ -109,12 +109,15 @@ export const Tree: Category[] = [{
 },];
 
 
-function SetPath(prefix: string, category: Category): void {
+/** */
+function _SetPath(prefix: string, category: Category): void {
 	const pathSep = "/";
 	if (DEF.DevAssert && category.id.includes(pathSep)) {
 		throw new Error(`category id "${category.id}" is invalid`);
 	}
 	prefix += category.id + pathSep;
+	// @ts-expect-error : RO=
+	category.path = prefix;
 	category.services.forEach((service) => {
 		if (DEF.DevAssert && service.id.includes(pathSep)) {
 			throw new Error(`service id "${category.id}" is invalid`);
@@ -123,7 +126,7 @@ function SetPath(prefix: string, category: Category): void {
 		service.path = prefix + service.id;
 	});
 	category.subcategories.forEach((subCategory) => {
-		SetPath(prefix, subCategory);
+		_SetPath(prefix, subCategory);
 	});
 }
-Tree.forEach((category) => SetPath("", category));
+Tree.forEach((category) => _SetPath("", category));
