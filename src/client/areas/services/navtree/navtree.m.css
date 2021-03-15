@@ -1,11 +1,12 @@
 
 .navtree {
 	contain: content;
-	--navitem-height: auto;
+	--navitem-height: 1.55em;
 	--navitem-indentation: 1.0em;
 
 	padding: 0.5em 1.0em;
-	overflow: auto;
+	overflow-y: scroll;
+	overflow-x: auto;
 	overscroll-behavior: none;
 
 	font-size: 130%;
@@ -14,12 +15,12 @@
 .item {
 	contain: content;
 	cursor: pointer;
-	max-height: var(--navitem-height);
-	transition: max-height 0.50s ease-out;
-	background-color: white;
+	height: var(--navitem-height);
+
+	transition: height 0.50s ease-out;
 }
 .item[data-expanded] {
-	max-height: fit-content;
+	height: fit-content;
 }
 .item > .item {
 	margin-inline-start: var(--navitem-indentation);
@@ -31,9 +32,17 @@
 }
 
 .item, .item-heading {
-	padding: 0.18em 0;
+	box-sizing: border-box;
+	padding-block-start: 0.18em;
+	padding-block-end:   0.18em;
+	background-color: white;
+	border-radius: 0.4em;
+}
+.item[data-is-leaf], .item-heading {
+	padding-inline-start: 0.4em;
+	padding-inline-end:   0.4em;
 }
 
-.item:hover, .item-heading:hover {
-	filter: brightness(95%);
+.item[data-is-leaf]:hover, .item-heading:hover {
+	filter: brightness(90%);
 }

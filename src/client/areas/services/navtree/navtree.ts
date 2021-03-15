@@ -9,8 +9,9 @@ export class NavTree {
 	private readonly localStorage = JsUtils.Web._makeSmartStorage(
 		"kec-srd", localStorage, { serviceNavTreeState: {} as ReadonlyArray<string> },
 	);
-	readonly #categories: ReadonlyArray<Category> = [];
+	readonly #expanded = new Set<Category>();
 	readonly #serviceMap = new Map<HTMLElement, Service>();
+	readonly #categoryMap = new Map<HTMLElement, Category>();
 	readonly #onChange: (_: Service) => void;
 
 	public constructor(onChange: (_: Service) => void) {
@@ -20,25 +21,29 @@ export class NavTree {
 			const el = ev.target;
 			if (!(el instanceof HTMLElement)) return; //⚡
 			if (el.classList.contains(style["item-heading"])) {
-				const parent = el.parentElement!;
-				if ("expanded" in parent.dataset) {
-					delete parent.dataset["expanded"];
-					this.#categories
+				const categoryEl = el.parentElement!;
+				const category = this.#categoryMap.get(categoryEl)!;
+				if (this.#expanded.has(category)) {
+					delete categoryEl.dataset["expanded"];
+					this.#expanded.delete(category);
 				} else {
-					parent.dataset["expanded"] = "";
+					categoryEl.dataset["expanded"] = "";
+					this.#expanded.add(category);
 				}
 			} else if (el.classList.contains(style.item) && this.#serviceMap.has(el)) {
 				this.#onChange(this.#serviceMap.get(el)!);
 			}
 		});
 		window.addEventListener("beforeunload", (ev) => {
-			this.localStorage.serviceNavTreeState = this.#categories.map((cat) => cat.path);
+			this.localStorage.serviceNavTreeState = [...this.#expanded].map((cat) => cat.path);
 		});
 		const restoreState = (this.localStorage.serviceNavTreeState as string[] ?? []).freeze();
 		/** */
 		const registerCategory = (parent: HTMLElement, category: Category) => {
 			const categoryEl = JsUtils.html("div", [style.item]);
+			this.#categoryMap.set(categoryEl, category);
 			if (restoreState.includes(category.path)) {
+				this.#expanded.add(category);
 				categoryEl.dataset["expanded"] = "";
 			}
 			categoryEl.appendChild(JsUtils.html("div", [style["item-heading"]], { textContent: category.title }));
@@ -47,6 +52,7 @@ export class NavTree {
 			});
 			category.services.forEach((service) => {
 				const serviceEl = JsUtils.html("div", [style.item], { textContent: service.title });
+				serviceEl.dataset["isLeaf"] = "";
 				this.#serviceMap.set(serviceEl, service);
 				categoryEl.appendChild(serviceEl);
 			});
