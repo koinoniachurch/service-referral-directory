@@ -20,7 +20,7 @@ export class NavTree {
 		this.base.addEventListener("click", (ev) => {
 			const el = ev.target;
 			if (!(el instanceof HTMLElement)) return; //⚡
-			if (el.classList.contains(style["item-heading"])) {
+			if (el.classList.contains(style["category-heading"])) {
 				const categoryEl = el.parentElement!;
 				const category = this.#categoryMap.get(categoryEl)!;
 				if (this.#expanded.has(category)) {
@@ -30,7 +30,7 @@ export class NavTree {
 					categoryEl.dataset["expanded"] = "";
 					this.#expanded.add(category);
 				}
-			} else if (el.classList.contains(style.item) && this.#serviceMap.has(el)) {
+			} else if (el.classList.contains(style["item"]) && this.#serviceMap.has(el)) {
 				this.#onChange(this.#serviceMap.get(el)!);
 			}
 		});
@@ -40,23 +40,22 @@ export class NavTree {
 		const restoreState = (this.localStorage.serviceNavTreeState as string[] ?? []).freeze();
 		/** */
 		const registerCategory = (parent: HTMLElement, category: Category) => {
-			const categoryEl = JsUtils.html("div", [style.item]);
-			this.#categoryMap.set(categoryEl, category);
+			const catEl = JsUtils.html("div", [style["item"], style["category"]]);
+			this.#categoryMap.set(catEl, category);
 			if (restoreState.includes(category.path)) {
 				this.#expanded.add(category);
-				categoryEl.dataset["expanded"] = "";
+				catEl.dataset["expanded"] = "";
 			}
-			categoryEl.appendChild(JsUtils.html("div", [style["item-heading"]], { textContent: category.title }));
+			catEl.appendChild(JsUtils.html("div", [style["category-heading"]], { textContent: category.title }));
 			category.subcategories.forEach((subCategory) => {
-				registerCategory(categoryEl, subCategory);
+				registerCategory(catEl, subCategory);
 			});
 			category.services.forEach((service) => {
-				const serviceEl = JsUtils.html("div", [style.item], { textContent: service.title });
-				serviceEl.dataset["isLeaf"] = "";
+				const serviceEl = JsUtils.html("div", [style["item"], style["service"]], { textContent: service.title });
 				this.#serviceMap.set(serviceEl, service);
-				categoryEl.appendChild(serviceEl);
+				catEl.appendChild(serviceEl);
 			});
-			parent.appendChild(categoryEl);
+			parent.appendChild(catEl);
 		}
 		Tree.forEach((category) => {
 			registerCategory(this.base, category);

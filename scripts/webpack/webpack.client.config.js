@@ -24,7 +24,10 @@ const WEB_MODULE_RULES = () => Object.freeze([{
 		loader: MiniCssExtractPlugin.loader, options: {}
 	}, {
 		loader: "css-loader", options: {
-			modules: { auto: /\.m\.css$/, },
+			modules: {
+				auto: /\.m\.css$/,
+				localIdentName: MODE.dev ? "[local]_[hash:base64:3]" : "[hash:base64]"
+			},
 		},
 	}],
 },{

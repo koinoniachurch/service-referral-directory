@@ -19,31 +19,31 @@
 	max-height: var(--navitem-height);
 	transition: max-height 0.50s linear;
 }
-.item[data-expanded] {
+.category[data-expanded] {
 	max-height: 20em;
 }
-.item > .item {
+.category > .item {
 	margin-inline-start: var(--navitem-indentation);
 }
-.item[data-is-leaf] {
+.service {
 	font-size: 80%;
 }
 
-.item-heading {
+.category-heading {
 	contain: content;
 	height: var(--navitem-height);
 }
 
-.item, .item-heading {
+.item, .category-heading {
 	cursor: pointer;
 	box-sizing: border-box;
 	border-radius: 0.4em;
 	background-color: white;
 }
-.item[data-is-leaf], .item-heading {
+.service, .category-heading {
 	padding: 0.18em 0em 0.18em 0.4em;
 }
-.item[data-is-leaf]:hover, .item-heading:hover {
+.service:hover, .category-heading:hover {
 	filter: brightness(90%);
 	overflow-anchor: auto;
 }
