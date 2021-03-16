@@ -5,3 +5,7 @@
 	grid-template:
 	"navtree main" auto / 13.0em auto;
 }
+.main {
+	/* override tabs: */
+	position: relative;
+}

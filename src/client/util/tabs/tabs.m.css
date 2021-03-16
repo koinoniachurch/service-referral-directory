@@ -40,14 +40,14 @@
 }
 
 .main {
-	contain: content;
-	overflow: hidden;
-}
-.main > * {
 	display: none;
+	grid-area: main;
+}
+.main[aria-current="true"] {
+	display: initial;
+}
+.main, .main > * {
+	contain: content;
 	position: absolute;
 	top: 0; bottom: 0; left: 0; right: 0;
-}
-.main > [aria-current="true"] {
-	display: initial;
 }

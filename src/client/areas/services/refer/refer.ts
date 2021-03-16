@@ -1,9 +1,10 @@
 import { JsUtils } from "defs/JsUtils";
 import type { Service } from "defs/Types";
+import style from "./refer.m.css";
 
 /** */
 export class Refer {
-	public readonly base = JsUtils.html("div");
+	public readonly base = JsUtils.html("div", [style["refer"]]);
 
 	private readonly ratings = Object.freeze({
 		overall: new Rating(),
@@ -16,7 +17,7 @@ export class Refer {
 	private readonly referrer = {
 		name:  JsUtils.html("input", [], { type: "text" }),
 		email: JsUtils.html("input", [], { type: "email" }),
-		phone: JsUtils.html("input", [], { type: "phone" }),
+		phone: JsUtils.html("input", [], { type: "tel" }),
 		dateLastUsed: JsUtils.html("input", [], { type: "date" }),
 	}
 
@@ -39,6 +40,8 @@ export class Refer {
 		f("Your Name", this.referrer.name);
 		f("Your Email", this.referrer.email);
 		f("Your Phone Number", this.referrer.phone);
+
+		this.clearInputs();
 	}
 
 	public clearInputs(): void {
@@ -78,6 +81,9 @@ Object.freeze(Refer.prototype);
 export class Rating {
 
 	public readonly base = JsUtils.html("div");
+	readonly #slider = JsUtils.html("input", [], {
+		type: "range", min: "1", max: "5", step: "1",
+	});
 
 	#value: number = 0;
 	public get value(): number {
@@ -86,10 +92,22 @@ export class Rating {
 
 	public constructor() {
 		Object.seal(this); //🧊
+		//this.#slider.setAttribute("list", Rating.datalist.id);
+		this.base.appendChild(this.#slider);
 	}
 	public clear(): void {
-		;
+		this.#slider.value = "3";
 	}
+}
+export namespace Rating {
+	// export const datalist = JsUtils.html("datalist", [], {
+	// 	id: "five-star-datalist",
+	// });
+	// for (let i = 1; i <= 5; i++) {
+	// 	datalist.appendChild(JsUtils.html("option", [], {
+	// 		value: i.toString(),
+	// 	}));
+	// }
 }
 Object.freeze(Rating);
 Object.freeze(Rating.prototype);

@@ -1,0 +1,15 @@
+
+.refer {
+	contain: content;
+	padding: 1.0em;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-auto-rows: 2.0em;
+	align-content: start;
+	justify-content: start;
+	align-items: center;
+	gap: 0.5em;
+}
+.refer label {
+	display: contents;
+}

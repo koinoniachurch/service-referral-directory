@@ -20,6 +20,7 @@ export class Services {
 		Object.seal(this); //🧊
 		this.main.addTab("Services", this.areas.service.base);
 		this.main.addTab("Add Referral", this.areas.refer.base);
+		this.main.base.classList.add(style["main"]);
 		this.base.appendChild(this.navtree.base);
 		this.base.appendChild(this.main.base);
 	}

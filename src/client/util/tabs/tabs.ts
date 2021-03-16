@@ -6,14 +6,12 @@ export class Tabs {
 
 	public readonly base = JsUtils.html("div", [style.layout]);
 	protected readonly areaNav = JsUtils.html("div", [style["area-nav"]]);
-	private readonly mainWrap = JsUtils.html("div", [style["main"]]);
 	readonly #handle2panel = new Map<HTMLElement, HTMLElement>();
 
 	public constructor() {
 		Object.seal(this); //🧊
 
 		this.base.appendChild(this.areaNav);
-		this.base.appendChild(this.mainWrap);
 
 		this.areaNav.setAttribute("role", "tablist");
 		this.areaNav.addEventListener("click", (ev) => {
@@ -36,11 +34,11 @@ export class Tabs {
 		handle.appendChild(JsUtils.html("div", [], { textContent: tabHandleText, tabIndex: 0 }));
 		this.areaNav.appendChild(handle);
 
-		const panel = JsUtils.html("div");
+		const panel = JsUtils.html("div", [style["main"]]);
 		panel.setAttribute("role", "tabpanel");
 		this.#handle2panel.set(handle, panel);
 		panel.appendChild(mainEl);
-		this.mainWrap.appendChild(panel);
+		this.base.appendChild(panel);
 
 		if (this.#handle2panel.size === 1) {
 			handle.click();
