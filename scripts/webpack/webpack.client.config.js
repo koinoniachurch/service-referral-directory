@@ -102,10 +102,10 @@ exports.CLIENT_CONFIG = __BaseConfig("client");
 		new HtmlPlugin(htmlPluginOptions),
 		new CspHtmlPlugin({
 			"default-src": ["'self'"],
-			"script-src": ["'self'"], "style-src": ["'self'"],
+			"script-src": ["'self'"], "style-src": ["'self'", "https://fonts.googleapis.com"],
 			"child-src": "'none'", "object-src": "'none'", "base-uri": "'none'",
 			"connect-src": ["'self'"],
-			"form-action": "'none'", },{
+			"form-action": "'none'", "font-src": ["'self'", "https://fonts.gstatic.com"] },{
 			hashingMethod: "sha256",
 			hashEnabled:  { "script-src": true,  "style-src": false },
 			nonceEnabled: { "script-src": false, "style-src": false },

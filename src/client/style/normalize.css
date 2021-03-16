@@ -15,7 +15,7 @@ body {
 	position: fixed;
 	top: 0; bottom: 0; left: 0; right: 0;
 
-	/* font-family: ; */
+	font-family: "Noto Sans SC", sans-serif;
 	color: var(--c-fg);
 	background-color: var(--c-bg);
 	scroll-behavior: smooth;

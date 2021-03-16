@@ -1,0 +1,53 @@
+
+.layout {
+	contain: content;
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	display: grid;
+	grid-template:
+	"topbar" 2.5em
+	"main"   auto
+	/ 1fr;
+}
+
+.area-nav {
+	contain: content;
+	display: grid;
+	grid-auto-flow: column;
+	align-items: stretch;
+	justify-content: start;
+	padding: 0 0.5em;
+
+	color: white;
+	background-color: var(--c-nav-bg);
+}
+
+.tab-handle {
+	cursor: pointer;
+	display: grid;
+	align-items: center;
+	padding: 0 0.9em;
+
+	white-space: nowrap;
+	font-size: 120%;
+	background-color: inherit;
+}
+.tab-handle * {
+	pointer-events: none;
+}
+.tab-handle:hover {
+	filter: brightness(140%);
+}
+
+.main {
+	contain: content;
+	overflow: hidden;
+}
+.main > * {
+	display: none;
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+}
+.main > [aria-current="true"] {
+	display: initial;
+}
