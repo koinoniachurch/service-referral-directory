@@ -14,16 +14,19 @@
 
 .item {
 	contain: content;
-	cursor: pointer;
-	height: var(--navitem-height);
+	overflow-anchor: none;
 
-	transition: height 0.50s ease-out;
+	max-height: var(--navitem-height);
+	transition: max-height 0.50s linear;
 }
 .item[data-expanded] {
-	height: fit-content;
+	max-height: 20em;
 }
 .item > .item {
 	margin-inline-start: var(--navitem-indentation);
+}
+.item[data-is-leaf] {
+	font-size: 80%;
 }
 
 .item-heading {
@@ -32,17 +35,15 @@
 }
 
 .item, .item-heading {
+	cursor: pointer;
 	box-sizing: border-box;
-	padding-block-start: 0.18em;
-	padding-block-end:   0.18em;
-	background-color: white;
 	border-radius: 0.4em;
+	background-color: white;
 }
 .item[data-is-leaf], .item-heading {
-	padding-inline-start: 0.4em;
-	padding-inline-end:   0.4em;
+	padding: 0.18em 0em 0.18em 0.4em;
 }
-
 .item[data-is-leaf]:hover, .item-heading:hover {
 	filter: brightness(90%);
+	overflow-anchor: auto;
 }

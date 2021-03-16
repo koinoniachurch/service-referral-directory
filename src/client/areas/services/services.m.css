@@ -3,5 +3,5 @@
 	contain: content;
 	display: grid;
 	grid-template:
-	"navtree main" auto / 15.0em auto;
+	"navtree main" auto / 13.0em auto;
 }

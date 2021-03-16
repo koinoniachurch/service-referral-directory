@@ -1,8 +1,8 @@
 import type { Category } from "./Types";
 
 export const Tree: Category[] = [{
-	id: "housing", path: "",
-	title: "房屋",
+	childId: "housing", path: "",
+	title: "🏘 房屋",
 	subcategories: [],
 	services: [
 		{ id: "real-estate",          title: "樓宇買賣", path: "" },
@@ -13,8 +13,8 @@ export const Tree: Category[] = [{
 		{ id: "property-management",  title: "物業管理", path: "" },
 	],
 },{
-	id: "finance", path: "",
-	title: "財務",
+	childId: "finance", path: "",
+	title: "💲 財務",
 	subcategories: [],
 	services: [
 		{ id: "financial-management",     title: "財務管理", path: "" },
@@ -22,16 +22,16 @@ export const Tree: Category[] = [{
 		{ id: "accountants-and-taxation", title: "會計/稅務", path: "" },
 	],
 },{
-	id: "law", path: "",
-	title: "移民 / 法律",
+	childId: "law", path: "",
+	title: "⚖ 移民 / 法律",
 	subcategories: [],
 	services: [
 		{ id: "immigration-lawyer",       title: "移民律師/顧問", path: "" },
 		{ id: "lawyer-and-notary-public", title: "律師 / 公証人", path: "" },
 	],
 },{
-	id: "transportation", path: "",
-	title: "交通",
+	childId: "transportation", path: "",
+	title: "🚗 交通",
 	subcategories: [],
 	services: [
 		{ id: "car-dealer",         title: "汽車買賣", path: "" },
@@ -40,16 +40,16 @@ export const Tree: Category[] = [{
 		{ id: "car-insurance",      title: "汽車保險", path: "" },
 	],
 },{
-	id: "insurance", path: "",
-	title: "保險",
+	childId: "insurance", path: "",
+	title: "🩹 保險",
 	subcategories: [],
 	services: [
 		{ id: "life-insurance",   title: "人壽保險", path: "" },
 		{ id: "health-insurance", title: "健康保險", path: "" },
 	],
 },{
-	id: "home", path: "",
-	title: "家居",
+	childId: "home", path: "",
+	title: "🏡 家居",
 	subcategories: [],
 	services: [
 		{ id: "decor-and-handyman", title: "家居裝修", path: "" },
@@ -60,8 +60,8 @@ export const Tree: Category[] = [{
 		{ id: "housekeeping",       title: "家居清潔", path: "" },
 	],
 },{
-	id: "medical", path: "",
-	title: "醫療",
+	childId: "medical", path: "",
+	title: "🩺 醫療",
 	subcategories: [],
 	services: [
 		{ id: "family-doctor",       title: "家庭醫生", path: "" },
@@ -78,8 +78,8 @@ export const Tree: Category[] = [{
 		{ id: "massage-therapist",   title: "按摩師", path: "" },
 	],
 },{
-	id: "family", path: "",
-	title: "家庭生活",
+	childId: "family", path: "",
+	title: "👪 家庭生活",
 	subcategories: [],
 	services: [
 		{ id: "home-assistant", title: "家務助理", path: "" },
@@ -87,16 +87,16 @@ export const Tree: Category[] = [{
 		{ id: "babysitting",    title: "托兒服務", path: "" },
 	],
 },{
-	id: "education", path: "",
-	title: "學習",
+	childId: "education", path: "",
+	title: "🍎 學習",
 	subcategories: [],
 	services: [
 		{ id: "english-tutor",  title: "英文補課", path: "" },
 		{ id: "academic-tutor", title: "學科補習", path: "" },
 	],
 },{
-	id: "hobby", path: "",
-	title: "興趣",
+	childId: "hobby", path: "",
+	title: "🏫 興趣",
 	subcategories: [],
 	services: [
 		{ id: "piano",        title: "鋼琴教授", path: "" },
@@ -112,15 +112,15 @@ export const Tree: Category[] = [{
 /** */
 function _SetPath(prefix: string, category: Category): void {
 	const pathSep = "/";
-	if (DEF.DevAssert && category.id.includes(pathSep)) {
-		throw new Error(`category id "${category.id}" is invalid`);
+	if (DEF.DevAssert && category.childId.includes(pathSep)) {
+		throw new Error(`category id "${category.childId}" is invalid`);
 	}
-	prefix += category.id + pathSep;
+	prefix += category.childId + pathSep;
 	// @ts-expect-error : RO=
 	category.path = prefix;
 	category.services.forEach((service) => {
 		if (DEF.DevAssert && service.id.includes(pathSep)) {
-			throw new Error(`service id "${category.id}" is invalid`);
+			throw new Error(`service id "${category.childId}" is invalid`);
 		}
 		// @ts-expect-error : RO=
 		service.path = prefix + service.id;
