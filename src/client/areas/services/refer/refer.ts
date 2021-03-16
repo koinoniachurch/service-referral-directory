@@ -1,6 +1,7 @@
 import { JsUtils } from "defs/JsUtils";
 import type { Service } from "defs/Types";
 import style from "./refer.m.css";
+import style_rating from "./rating.m.css";
 
 /** */
 export class Refer {
@@ -15,14 +16,19 @@ export class Refer {
 	});
 
 	private readonly referrer = {
-		name:  JsUtils.html("input", [], { type: "text" }),
-		email: JsUtils.html("input", [], { type: "email" }),
-		phone: JsUtils.html("input", [], { type: "tel" }),
+		name:  JsUtils.html("input", [], { type: "text",  autocomplete: "name" }),
+		email: JsUtils.html("input", [], { type: "email", autocomplete: "email" }),
+		phone: JsUtils.html("input", [], { type: "tel",   autocomplete: "tel" }),
 		dateLastUsed: JsUtils.html("input", [], { type: "date" }),
 	}
 
+	readonly #submit = JsUtils.html("button", [style["submit"]], { textContent: "submit" });
+
 	public constructor() {
 		Object.seal(this); //🧊
+		this.#submit.addEventListener("click", (ev) => {
+			; // TODO.impl
+		});
 
 		const f = (labelText: string, input: HTMLElement): void => {
 			const label = JsUtils.html("label");
@@ -41,6 +47,7 @@ export class Refer {
 		f("Your Email", this.referrer.email);
 		f("Your Phone Number", this.referrer.phone);
 
+		this.base.appendChild(this.#submit);
 		this.clearInputs();
 	}
 
@@ -52,9 +59,9 @@ export class Refer {
 		this.ratings.responseSpeed.clear();
 
 		this.referrer.dateLastUsed.value = "";
-		this.referrer.name.value = "";
-		this.referrer.email.value = "";
-		this.referrer.phone.value = "";
+		// this.referrer.name.value = "";
+		// this.referrer.email.value = "";
+		// this.referrer.phone.value = "";
 	}
 
 	/** */
@@ -81,33 +88,24 @@ Object.freeze(Refer.prototype);
 export class Rating {
 
 	public readonly base = JsUtils.html("div");
-	readonly #slider = JsUtils.html("input", [], {
-		type: "range", min: "1", max: "5", step: "1",
+	readonly #slider = JsUtils.html("input", [style_rating["input"]], {
+		type: "range", min: "1", max: "5", step: "1", width: 500,
 	});
-
-	#value: number = 0;
-	public get value(): number {
-		return this.#value;
-	}
+	readonly #describe = JsUtils.html("span", );
 
 	public constructor() {
 		Object.seal(this); //🧊
-		//this.#slider.setAttribute("list", Rating.datalist.id);
+		this.#slider.addEventListener("input", (ev) => {
+			this.#slider.dataset["value"] = this.#slider.value;
+		});
 		this.base.appendChild(this.#slider);
 	}
 	public clear(): void {
 		this.#slider.value = "3";
 	}
-}
-export namespace Rating {
-	// export const datalist = JsUtils.html("datalist", [], {
-	// 	id: "five-star-datalist",
-	// });
-	// for (let i = 1; i <= 5; i++) {
-	// 	datalist.appendChild(JsUtils.html("option", [], {
-	// 		value: i.toString(),
-	// 	}));
-	// }
+	public get value(): number {
+		return Number.parseInt(this.#slider.value);
+	}
 }
 Object.freeze(Rating);
 Object.freeze(Rating.prototype);
