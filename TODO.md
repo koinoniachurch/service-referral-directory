@@ -9,5 +9,6 @@
 ## Things After MVP
 
 - Polish Styling
+  - Navtree rotating expanded arrow
 - Add ReCaptcha
 - Accessibility
