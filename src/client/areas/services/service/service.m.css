@@ -2,3 +2,7 @@
 .service {
 	contain: content;
 }
+
+.providers {
+	contain: content;
+}

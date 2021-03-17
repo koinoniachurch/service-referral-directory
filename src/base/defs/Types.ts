@@ -28,9 +28,9 @@ export namespace Service {
 		readonly photo: string;
 		readonly telephone: string;
 		readonly languages: Language[];
-		readonly ratings: Ratings;
+		readonly avgRatings: Ratings;
 		readonly isChristian: boolean;
-		readonly referrers: Referrer[];
+		readonly referrals: Referral[];
 	}
 
 	/** */
@@ -51,7 +51,7 @@ export namespace Service {
 	}
 
 	/** */
-	export interface ReferralFormData {
+	export interface Referral {
 		referrer: Referrer;
 		ratings: Ratings;
 	}

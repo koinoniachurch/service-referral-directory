@@ -21,25 +21,9 @@
 	],
 	"words": [
 		// Project-specific Terms:
-		"capswalk",
 		"fong",
-		"artif",
-		"bubbler",
 		"childbase", // tsconfigs
-		"csp's", "csps",
 		"devinit",
-		"elim",
-		"gamepart", "gameparts",
-		"OMHC", // Object-Model Hook :: Classes
-		"OMHD", // Object-Model Hook :: Dataset Keys
-		"pred", // as in "predator"
-		"sesh",
-		"seqs",
-		"sysname",
-		"typeable",
-		"unts",
-		"engl", "japn", "kore", "jamo", "ngram", "ngrams",
-		"smoothstone",
 		"pikk", "xcld", // short for "exclude"
 
 		// Programming terminology:
@@ -95,14 +79,10 @@
 		"worktree", "worktrees",
 
 		"lowercase", "uppercase",
-		"hiragana" , "katakana" ,
-		"dubeolsik", "sebeolsik",
 
 		// English:
 		"broadcasted",
 		"constraining",
-		"gameplay",
-		"hinderance",
 		"hitbox",
 		"jank",
 		"lifestages",
@@ -122,9 +102,7 @@
 		"shortcut",
 		"spacebar",
 		"spellcheck", // <-- how ironic
-		"teammate", "teammates",
 		"tradeoff",
-		"turtling",
 		"unblur"
 	]
 }

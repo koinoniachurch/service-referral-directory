@@ -17,7 +17,7 @@ export class Services {
 		refer: new Refer(),
 	});
 	readonly #servicePanels = new Map<ServiceModel["path"], Service>();
-	readonly #currentService: Service | undefined;
+	#currentService: Service | undefined;
 
 	public constructor() {
 		Object.seal(this); //🧊
@@ -34,8 +34,13 @@ export class Services {
 		if (curr) {
 			curr.base.remove();
 		}
-		const next = this.#servicePanels.get(desc.path) ?? new Service(desc);
+		const next = this.#servicePanels.get(desc.path) ?? (() => {
+			const next = new Service(desc);
+			this.#servicePanels.set(desc.path, next);
+			return next;
+		})();
 		this.areas.service.appendChild(next.base);
+		this.#currentService = next;
 	}
 }
 Object.freeze(Services);

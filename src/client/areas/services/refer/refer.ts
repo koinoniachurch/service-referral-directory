@@ -65,7 +65,7 @@ export class Refer {
 	}
 
 	/** */
-	public parseInputs(): Service.ReferralFormData { return {
+	public parseInputs(): Service.Referral { return {
 		referrer: {
 			name: this.referrer.name.value,
 			email: this.referrer.email.value,
