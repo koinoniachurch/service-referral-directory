@@ -22,7 +22,7 @@ export class Refer {
 		dateLastUsed: JsUtils.html("input", [], { type: "date" }),
 	}
 
-	readonly #submit = JsUtils.html("button", [style["submit"]], { textContent: "submit" });
+	readonly #submit = JsUtils.html("button", ["c-pop", style["submit"]], { textContent: "submit" });
 
 	public constructor() {
 		Object.seal(this); //🧊

@@ -8,6 +8,7 @@
 	"topbar" 2.5em
 	"main"   auto
 	/ 1fr;
+	background-color: inherit;
 }
 
 .area-nav {
@@ -17,9 +18,6 @@
 	align-items: stretch;
 	justify-content: start;
 	padding: 0 0.5em;
-
-	color: white;
-	background-color: var(--c-nav-bg);
 }
 
 .tab-handle {

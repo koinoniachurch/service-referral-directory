@@ -5,11 +5,12 @@ import style from "./tabs.m.css";
 export class Tabs {
 
 	public readonly base = JsUtils.html("div", [style.layout]);
-	protected readonly areaNav = JsUtils.html("div", [style["area-nav"]]);
+	public readonly areaNav = JsUtils.html("div", [style["area-nav"]]);
 	readonly #handle2panel = new Map<HTMLElement, HTMLElement>();
 
 	public constructor() {
 		Object.seal(this); //🧊
+		JsUtils.propNoWrite(this as Tabs, "base", "areaNav");
 
 		this.base.appendChild(this.areaNav);
 

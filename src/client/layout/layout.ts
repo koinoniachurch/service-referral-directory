@@ -16,6 +16,7 @@ export class Layout {
 	public constructor() {
 		Object.seal(this); //🧊
 
+		this.#tabs.areaNav.classList.add("c-pop");
 		this.#tabs.addTab("Services", this.areas.services.base);
 	}
 }

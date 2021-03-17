@@ -4,7 +4,7 @@
 	--navitem-height: 1.55em;
 	--navitem-indentation: 1.0em;
 
-	padding: 0.5em 1.0em;
+	padding: 0.5em 0.7em;
 	overflow-y: scroll;
 	overflow-x: auto;
 	overscroll-behavior: none;

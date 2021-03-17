@@ -1,0 +1,22 @@
+
+:root {
+	--c-reg-bg: white;
+	--c-reg-fg: black;
+
+	--c-pop-bg: #1d4429;
+	--c-pop-fg: white;
+}
+.c-reg {
+	color: var(--c-reg-fg);
+	background-color: var(--c-reg-bg);
+}
+.c-pop {
+	color: var(--c-pop-fg);
+	background-color: var(--c-pop-bg);
+}
+
+body {
+	font-family: "Noto Sans SC", sans-serif;
+	color: var(--c-reg-fg);
+	background-color: var(--c-reg-bg);
+}
