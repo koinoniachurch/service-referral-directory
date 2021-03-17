@@ -30,6 +30,9 @@
 	font-size: 120%;
 	background-color: inherit;
 }
+.tab-handle[aria-selected] {
+	text-decoration: underline;
+}
 .tab-handle * {
 	pointer-events: none;
 }

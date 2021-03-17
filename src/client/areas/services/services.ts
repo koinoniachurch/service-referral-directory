@@ -21,6 +21,7 @@ export class Services {
 
 	public constructor() {
 		Object.seal(this); //🧊
+		this.main.areaNav.classList.add("c-alt");
 		this.main.addTab("View Referrals", this.areas.service);
 		this.main.addTab("Add Referral", this.areas.refer.base);
 		this.main.base.classList.add(style["main"]);

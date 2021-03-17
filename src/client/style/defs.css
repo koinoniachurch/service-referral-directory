@@ -1,14 +1,21 @@
 
 :root {
-	--c-reg-bg: white;
 	--c-reg-fg: black;
+	--c-reg-bg: white;
 
-	--c-pop-bg: #1d4429;
+	--c-alt-fg: black;
+	--c-alt-bg: lightgrey;
+
 	--c-pop-fg: white;
+	--c-pop-bg: #1d4429;
 }
 .c-reg {
 	color: var(--c-reg-fg);
 	background-color: var(--c-reg-bg);
+}
+.c-alt {
+	color: var(--c-alt-fg);
+	background-color: var(--c-alt-bg);
 }
 .c-pop {
 	color: var(--c-pop-fg);

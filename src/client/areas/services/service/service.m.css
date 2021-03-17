@@ -1,6 +1,7 @@
 
 .service {
 	contain: content;
+	padding: 1.0em;
 }
 
 .providers {

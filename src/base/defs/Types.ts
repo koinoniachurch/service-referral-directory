@@ -26,7 +26,9 @@ export namespace Service {
 	export interface Provider {
 		readonly name: string;
 		readonly photo: string;
+		readonly email: string;
 		readonly telephone: string;
+		readonly website: string;
 		readonly languages: Language[];
 		readonly avgRatings: Ratings;
 		readonly isChristian: boolean;
@@ -54,5 +56,12 @@ export namespace Service {
 	export interface Referral {
 		referrer: Referrer;
 		ratings: Ratings;
+	}
+	export namespace Referral {
+		export interface Req {
+			readonly servicePath: Service["path"];
+			readonly providerEmail: Service.Provider["email"];
+			readonly referral: Referral;
+		}
 	}
 }

@@ -18,6 +18,7 @@ export class Service {
 	public async syncData(): Promise<void> {
 		const providerModels = Service.ExampleData;
 		//const providers = JSON.parse(await (await fetch("", {}).json()) as Model.Provider[];
+		// TODO.impl uncomment the above when the server is ready.
 		this.#providers.textContent = "";
 		providerModels.forEach((model) => this.#providers.appendChild(new Provider(model).base))
 	}
@@ -29,13 +30,25 @@ export namespace Service {
 		photo: "https://example.com/photo",
 		languages: [Language.Cantonese, Language.English],
 		isChristian: true,
+		email: "serviceprovider1@example.com",
 		telephone: "604-123-4567",
+		website: "serviceprovider1.com",
 		referrals: [{
 			referrer: {
 				name: "Referrer 1",
 				email: "referrer1@example.com",
 				telephone: "555-555-5555",
 				dateLastUsed: "2020/12/01",
+			},
+			ratings: {
+				overall: 4, serviceQuality: 4, pricing: 4, communication: 4, responseSpeed: 4,
+			},
+		},{
+			referrer: {
+				name: "Referrer 2",
+				email: "referrer2@example.com",
+				telephone: "123-456-7890",
+				dateLastUsed: "2011/05/21",
 			},
 			ratings: {
 				overall: 4, serviceQuality: 4, pricing: 4, communication: 4, responseSpeed: 4,

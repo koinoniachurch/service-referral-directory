@@ -2,3 +2,19 @@
 .provider {
 	contain: content;
 }
+
+.info {
+	contain: content;
+	display: grid;
+}
+.info > :first-child {
+	font-weight: bold;
+	font-size: 110%;
+}
+
+.referrals {
+	contain: content;
+}
+.referrals td {
+	padding: 0.3em;
+}

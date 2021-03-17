@@ -31,7 +31,9 @@ export class NavTree {
 					this.#expanded.add(category);
 				}
 			} else if (el.classList.contains(style["item"]) && this.#serviceMap.has(el)) {
+				this.base.querySelector("[aria-selected='true']")?.removeAttribute("aria-selected");
 				this.#onChange(this.#serviceMap.get(el)!);
+				el.setAttribute("aria-selected", "true");
 			}
 		});
 		window.addEventListener("beforeunload", (ev) => {

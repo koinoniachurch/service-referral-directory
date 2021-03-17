@@ -6,6 +6,9 @@ import style_rating from "./rating.m.css";
 /** */
 export class Refer {
 	public readonly base = JsUtils.html("div", [style["refer"]]);
+	#currentService: Service;
+
+	private providerEmail = JsUtils.html("input", [], { type: "email" });
 
 	private readonly ratings = Object.freeze({
 		overall: new Rating(),
@@ -19,7 +22,10 @@ export class Refer {
 		name:  JsUtils.html("input", [], { type: "text",  autocomplete: "name" }),
 		email: JsUtils.html("input", [], { type: "email", autocomplete: "email" }),
 		phone: JsUtils.html("input", [], { type: "tel",   autocomplete: "tel" }),
-		dateLastUsed: JsUtils.html("input", [], { type: "date" }),
+		dateLastUsed: JsUtils.html("input", [], {
+			type: "month", max: new Date().toISOString().slice(0,7),
+			min: "1990-01",
+		}),
 	}
 
 	readonly #submit = JsUtils.html("button", ["c-pop", style["submit"]], { textContent: "submit" });
@@ -27,7 +33,10 @@ export class Refer {
 	public constructor() {
 		Object.seal(this); //🧊
 		this.#submit.addEventListener("click", (ev) => {
-			; // TODO.impl
+			if (!ev.isTrusted) {
+				return; //⚡
+			}
+			this.submit();
 		});
 
 		const f = (labelText: string, input: HTMLElement): void => {
@@ -36,6 +45,8 @@ export class Refer {
 			label.appendChild(input);
 			this.base.appendChild(label);
 		}
+		f("Service Provider's Email", this.providerEmail);
+
 		f("Overall", this.ratings.overall.base);
 		f("Pricing", this.ratings.pricing.base);
 		f("Service Quality", this.ratings.serviceQuality.base);
@@ -51,6 +62,13 @@ export class Refer {
 		this.clearInputs();
 	}
 
+	/** */
+	public setCurrentService(service: Service): void {
+		this.#currentService = service;
+		this.clearInputs();
+	}
+
+	/** */
 	public clearInputs(): void {
 		this.ratings.overall.clear();
 		this.ratings.pricing.clear();
@@ -80,6 +98,19 @@ export class Refer {
 			responseSpeed:  this.ratings.responseSpeed.value,
 		},
 	};}
+
+	/** */
+	private submit(): void {
+		const referral = this.parseInputs();
+		const data: Service.Referral.Req = {
+			providerEmail: this.providerEmail.value,
+			servicePath: this.#currentService.path,
+			referral,
+		};
+		fetch("", {
+			method: "POST", body: JSON.stringify(data),
+		});
+	}
 }
 Object.freeze(Refer);
 Object.freeze(Refer.prototype);

@@ -2,12 +2,9 @@
 @import "normalize.vendor";
 /* #endregion */
 
-* {
-	user-select: none; /* allows overriding */
-}
-
 html {
 	scroll-behavior: smooth;
+	user-select: none; /* allows overriding */
 }
 
 body {
@@ -44,6 +41,9 @@ input {
 	font:           inherit;
 	text-align:     inherit;
 	box-sizing:     border-box;
+}
+input:invalid {
+	border-color: red;
 }
 
 table {

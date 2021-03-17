@@ -5,6 +5,10 @@
 	grid-template:
 	"navtree main" auto / 13.0em auto;
 }
+.tabs {
+	color: var(--c-alt-fg);
+	background-color: var(--c-alt-bg);
+}
 .main {
 	/* override tabs: */
 	position: relative;
